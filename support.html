@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — Claude Apps</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --card: #ffffff;
+    --text: #1d1d1f;
+    --secondary: #6e6e73;
+    --accent: #0071e3;
+    --border: #e5e5e7;
+    --radius: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #111111;
+      --card: #1c1c1e;
+      --text: #f5f5f7;
+      --secondary: #98989d;
+      --accent: #2997ff;
+      --border: #38383a;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  header p {
+    color: var(--secondary);
+    font-size: 0.95rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .card h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .card h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .card p, .card li {
+    color: var(--secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  .card p + p { margin-top: 12px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* App grid */
+  .app-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .app-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+  .app-item:hover { border-color: var(--accent); }
+  .app-item h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+  .app-item .price {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .app-item p {
+    font-size: 0.85rem;
+    color: var(--secondary);
+    line-height: 1.5;
+  }
+
+  /* FAQ */
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+  }
+  .faq-item:first-of-type { padding-top: 0; }
+  .faq-item:last-of-type { border-bottom: none; padding-bottom: 0; }
+  .faq-item summary {
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: "+";
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--secondary);
+    transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after {
+    content: "\2212";
+  }
+  .faq-item .answer {
+    margin-top: 12px;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  /* Contact banner */
+  .contact-banner {
+    background: var(--accent);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .contact-banner h2 { color: #fff; font-size: 1.25rem; margin-bottom: 8px; }
+  .contact-banner p { color: rgba(255,255,255,0.85); font-size: 0.95rem; margin-bottom: 16px; }
+  .contact-banner a {
+    display: inline-block;
+    background: #fff;
+    color: var(--accent);
+    padding: 10px 28px;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: opacity 0.2s;
+  }
+  .contact-banner a:hover { opacity: 0.9; text-decoration: none; }
+
+  footer {
+    text-align: center;
+    color: var(--secondary);
+    font-size: 0.8rem;
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--secondary); }
+
+  @media (max-width: 480px) {
+    .container { padding: 32px 16px 64px; }
+    header h1 { font-size: 1.5rem; }
+    .app-grid { grid-template-columns: 1fr; }
+    .card { padding: 24px 20px; }
+    .contact-banner { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Support</h1>
+    <p>Claude Apps &mdash; Help &amp; FAQ</p>
+  </header>
+
+  <div class="contact-banner">
+    <h2>Need Help?</h2>
+    <p>We typically respond within 24 hours.</p>
+    <a href="mailto:focusframe-support@agentmail.to">Email Us</a>
+  </div>
+
+  <!-- App Directory -->
+  <div class="card">
+    <h2>Our Apps</h2>
+    <p style="margin-bottom: 20px;">All apps are one-time purchase, no subscriptions, no ads, and 100% private (data stays on your device).</p>
+  </div>
+
+  <div class="app-grid">
+    <div class="app-item">
+      <h3>SplitCheck</h3>
+      <div class="price">$1.99</div>
+      <p>Split bills the smart way. Scan receipts with your camera, assign items to people, and settle up instantly. Supports Venmo deep links.</p>
+    </div>
+    <div class="app-item">
+      <h3>PetLog</h3>
+      <div class="price">$3.99</div>
+      <p>Track your pet's health, feeding, medications, and vet visits. Health dashboard, smart reminders, and shareable summaries.</p>
+    </div>
+    <div class="app-item">
+      <h3>FocusFrame</h3>
+      <div class="price">$4.99</div>
+      <p>Task manager and focus timer designed for ADHD. One-tap focus sessions, flexible timers, celebration screens, and daily widgets.</p>
+    </div>
+    <div class="app-item">
+      <h3>VoiceInk</h3>
+      <div class="price">$3.99</div>
+      <p>Transcribe voice to text, entirely offline. Timestamped transcription, one-tap copy, and home screen widgets.</p>
+    </div>
+    <div class="app-item">
+      <h3>PDF Toolbox</h3>
+      <div class="price">$4.99</div>
+      <p>Compress, merge, split, lock, unlock, and convert PDFs. All processing on-device. Your documents never leave your phone.</p>
+    </div>
+    <div class="app-item">
+      <h3>PhotoBatch</h3>
+      <div class="price">$2.99</div>
+      <p>Batch resize, convert, and compress images. HEIC to JPEG/PNG, metadata preservation, and before/after size comparison.</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="card" style="margin-top: 24px;">
+    <h2>Frequently Asked Questions</h2>
+
+    <details class="faq-item">
+      <summary>How do I restore my purchase on a new device?</summary>
+      <div class="answer">
+        All our apps are sold through the App Store. To restore your purchase, simply download the app again from the App Store using the same Apple ID you used for the original purchase. You will not be charged again. Go to App Store &rarr; tap your profile &rarr; Purchased &rarr; find the app &rarr; download.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>How does iCloud sync work?</summary>
+      <div class="answer">
+        Some of our apps (PetLog, FocusFrame, VoiceInk) support iCloud sync. Your data is synced through your own Apple iCloud account. We never see or access your data. To enable or disable sync, go to your device's Settings &rarr; [Your Name] &rarr; iCloud &rarr; and toggle the app. Make sure you are signed into the same Apple ID on all devices.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Do your apps work offline?</summary>
+      <div class="answer">
+        Yes. All our apps work 100% offline. Every feature runs locally on your device. An internet connection is only needed if you choose to use iCloud sync.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Do you collect any data or analytics?</summary>
+      <div class="answer">
+        No. We collect zero data. No analytics, no tracking, no advertising, no third-party SDKs. Your data stays on your device. See our <a href="privacy-policy.html">Privacy Policy</a> for details.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Do your apps require an account to use?</summary>
+      <div class="answer">
+        No. None of our apps require you to create an account, sign up, or log in. Just download and start using.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Which devices are supported?</summary>
+      <div class="answer">
+        All our apps support iPhone and iPad running iOS 17 or later, and Mac running macOS 14 (Sonoma) or later. One purchase works on all your Apple devices (Universal Purchase).
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>I found a bug or have a feature request.</summary>
+      <div class="answer">
+        We would love to hear from you. Please email us at <a href="mailto:focusframe-support@agentmail.to">focusframe-support@agentmail.to</a> with a description of the issue or your idea. Include your device model and iOS version if reporting a bug.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I get a refund?</summary>
+      <div class="answer">
+        Refunds are handled by Apple since all purchases are made through the App Store. Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a> to request a refund from Apple.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>Why are your apps paid instead of free with ads?</summary>
+      <div class="answer">
+        We believe you should pay once and own the app forever, with no ads, no subscriptions, and no data harvesting. Your attention and your privacy are worth more than ad revenue. We keep prices low so it is accessible to everyone.
+      </div>
+    </details>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Claude Apps. All rights reserved.</p>
+    <p style="margin-top: 8px;"><a href="privacy-policy.html">Privacy Policy</a></p>
+  </footer>
+
+</div>
+</body>
+</html>
